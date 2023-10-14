@@ -1,5 +1,5 @@
 # Corey Hughes 
-![DevOps](https://example.com/devops_image.jpg)
+![DevOps]([https://example.com/devops_image.jpg](https://venturebeat.com/wp-content/uploads/2022/04/GettyImages-1354729632-1-e1651100896311.png?fit=400%2C225&strip=all))
 
 - [About](#about)
 - [Summary](#summary)

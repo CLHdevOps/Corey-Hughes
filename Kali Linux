@@ -1,0 +1,210 @@
+# Kali Linux Commands
+
+1. Network Scanning and Discovery
+Tools:
+Nmap: One of the most popular network discovery and scanning tools. You can scan ports, services, and operating systems of network devices.
+
+Example:
+bash
+Copy code
+sudo nmap -sP 192.168.1.0/24
+Netcat (nc): Often referred to as the Swiss army knife for network penetration testers, it can be used to connect to services, transfer files, and more.
+
+Example (simple banner grab):
+bash
+Copy code
+nc -v 192.168.1.10 80
+Zenmap: A graphical interface for Nmap, allowing users to perform network scans visually.
+
+arp-scan: Used for scanning ARP addresses in a local network to discover live hosts and MAC addresses.
+
+Example:
+bash
+Copy code
+sudo arp-scan --interface=wlan0 192.168.1.0/24
+Masscan: Extremely fast network scanner capable of scanning the entire Internet.
+
+Example:
+bash
+Copy code
+sudo masscan -p80 192.168.1.0/24 --rate=1000
+2. Packet Sniffing and Network Traffic Analysis
+Tools:
+Wireshark: A popular GUI-based tool for sniffing and analyzing packets on a network.
+
+Start sniffing:
+bash
+Copy code
+sudo wireshark
+tcpdump: A command-line packet sniffer and analyzer.
+
+Capture packets:
+bash
+Copy code
+sudo tcpdump -i wlan0
+ettercap: A comprehensive suite for man-in-the-middle attacks on LAN, featuring sniffing, packet injection, and filtering.
+
+Example:
+bash
+Copy code
+sudo ettercap -T -q -i wlan0 -M arp:remote /192.168.1.10/ /192.168.1.1/
+3. Wireless Hacking and Security Auditing
+Tools:
+Aircrack-ng Suite: A suite of tools to assess and crack wireless networks (Wi-Fi).
+
+Airmon-ng: Puts your wireless card into monitor mode.
+bash
+Copy code
+sudo airmon-ng start wlan0
+Airodump-ng: Captures wireless traffic to identify networks and clients.
+bash
+Copy code
+sudo airodump-ng wlan0mon
+Aircrack-ng: Cracks WEP and WPA/WPA2 passwords using captured handshake files.
+bash
+Copy code
+sudo aircrack-ng -w wordlist.txt -b <BSSID> capturefile.cap
+Aireplay-ng: Injects packets to generate traffic and capture handshakes for cracking.
+bash
+Copy code
+sudo aireplay-ng -0 10 -a <BSSID> wlan0mon
+Wifite: Automates wireless attacks by running tools like aircrack-ng, reaver, and bully.
+
+Example:
+bash
+Copy code
+sudo wifite
+Reaver: A tool to perform brute-force attacks against WPS (Wi-Fi Protected Setup) to retrieve WPA/WPA2 passphrases.
+
+Example:
+bash
+Copy code
+sudo reaver -i wlan0mon -b <BSSID> -vv
+4. VPN and Network Tunneling
+Tools:
+OpenVPN: Secure VPN client for establishing encrypted network connections.
+
+Example:
+bash
+Copy code
+sudo openvpn --config vpn-config.ovpn
+SSH (Secure Shell): For secure network communications, remote logins, and tunneling.
+
+Example:
+bash
+Copy code
+ssh user@192.168.1.100
+Proxychains: Chains network traffic through multiple proxies to anonymize activities.
+
+Example:
+bash
+Copy code
+proxychains nmap -sT 192.168.1.0/24
+5. Network Exploitation
+Tools:
+Metasploit Framework: A powerful platform for discovering, exploiting, and managing vulnerabilities in networked systems.
+
+Example (starting Metasploit):
+bash
+Copy code
+sudo msfconsole
+Responder: LLMNR, NBT-NS, and MDNS poisoner to capture credentials on a network.
+
+Example:
+bash
+Copy code
+sudo responder -I wlan0
+Bettercap: A versatile tool for network attacks, sniffing, and man-in-the-middle (MITM) attacks.
+
+Example:
+bash
+Copy code
+sudo bettercap -iface wlan0
+Evil Twin Attack: Using airgeddon to create a fake Wi-Fi access point to capture credentials from unsuspecting users.
+
+Start airgeddon:
+bash
+Copy code
+sudo airgeddon
+6. Password Cracking
+Tools:
+John the Ripper: A fast password cracker that supports multiple hash types.
+
+Example (basic):
+bash
+Copy code
+john --wordlist=/usr/share/wordlists/rockyou.txt hashfile
+Hydra: A brute-force tool for network logins that supports various protocols like SSH, HTTP, FTP, and more.
+
+Example:
+bash
+Copy code
+sudo hydra -l user -P password-list.txt ssh://192.168.1.10
+Hashcat: An advanced password recovery tool for cracking hashes using your CPU or GPU.
+
+Example (cracking a WPA handshake):
+bash
+Copy code
+hashcat -m 2500 -a 3 capturefile.hccapx
+7. Wireless Jamming
+Tools:
+MDK3: A Wi-Fi testing tool that allows you to flood or jam a Wi-Fi network.
+
+Example:
+bash
+Copy code
+sudo mdk3 wlan0mon d -c 6
+Wi-Fi Jammer: Python scripts available in Kali can be used for DoS attacks on Wi-Fi networks by sending deauthentication packets.
+
+Example:
+bash
+Copy code
+sudo python wifi_jammer.py
+8. Network Monitoring
+Tools:
+Netdiscover: A passive tool to discover devices connected to the network by observing ARP requests.
+
+Example:
+bash
+Copy code
+sudo netdiscover -i wlan0
+IPTraf-ng: A real-time network monitoring tool for tracking incoming and outgoing traffic, interfaces, protocols, and more.
+
+Example:
+bash
+Copy code
+sudo iptraf-ng
+iftop: Shows bandwidth usage on the network in real-time.
+
+Example:
+bash
+Copy code
+sudo iftop -i wlan0
+9. Social Engineering Attacks
+Tools:
+SET (Social-Engineer Toolkit): Automates various social engineering attacks such as phishing, email spoofing, and more.
+
+Example:
+bash
+Copy code
+sudo setoolkit
+WiFi Phisher: Creates a fake Wi-Fi access point that can be used to capture credentials or perform phishing attacks.
+
+Example:
+bash
+Copy code
+sudo wifiphisher
+10. Wireless Reconnaissance and Monitoring
+Tools:
+Kismet: Wireless network detector, sniffer, and intrusion detection system.
+
+Example:
+bash
+Copy code
+sudo kismet
+Hcxdumptool: Captures WPA/WPA2 handshakes and PMKID for later cracking with Hashcat.
+
+Example:
+bash
+Copy code
+sudo hcxdumptool -i wlan0 -o capturefile.pcapng --enable_status=1
